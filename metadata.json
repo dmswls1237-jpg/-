@@ -1,0 +1,6 @@
+{
+  "name": "법무법인 율인",
+  "description": "부산 지역 밀착 법률 서비스 법무법인 율인 - 민사, 형사, 가사, 회생파산 전문 상담 예약 및 사건 현황 관리 플랫폼",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
