@@ -61,7 +61,7 @@ export default function Directions() {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm sm:text-base font-bold text-slate-800">도시철도 1호선 온천장역 1번 출구</p>
-                    <p className="text-sm text-slate-600 mt-1 leading-relaxed">온천장역 1번 출구에서 나와 신정 사거리/온천교 방향으로 약 250m 도보 직진 (온천교사거리 풍림아파트 인근 상가동 209호)</p>
+                    <p className="text-sm text-slate-600 mt-1 leading-relaxed">온천장역 1번 출구에서 나와 신정 사거리/온천교 방향으로 약 250m 도보 직진</p>
                   </div>
                 </li>
 

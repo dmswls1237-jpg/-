@@ -59,7 +59,7 @@ export default function LawyerCards() {
                     {/* Empathetic Quote */}
                     <div className="relative mt-4 border-l-2 border-brand-gold pl-4 py-1">
                       <Quote className="absolute right-2 bottom-1 h-8 w-8 text-slate-100 opacity-60 z-0" />
-                      <p className="relative z-10 font-serif text-sm sm:text-base md:text-lg italic font-semibold leading-relaxed text-slate-800">
+                      <p className="relative z-10 font-serif text-sm sm:text-base md:text-lg italic font-semibold leading-relaxed text-slate-800 whitespace-pre-line">
                         "{lawyer.quote}"
                       </p>
                     </div>

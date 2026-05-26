@@ -21,11 +21,11 @@ export default function SuccessCases() {
           <div className="mx-auto mt-5 h-[2px] w-12 bg-brand-gold" />
         </div>
 
-        {/* Case Toggle Segmented layout */}
-        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-12">
+        {/* Case Toggle Segmented layout (PC Desktop Version) */}
+        <div className="mt-12 hidden lg:grid lg:grid-cols-12 gap-8">
           
           {/* Left panel - Case checklist */}
-          <div className="lg:col-span-5 flex flex-col space-y-4">
+          <div className="lg:col-span-4 flex flex-col space-y-4">
             {SUCCESS_CASES.map((item) => (
               <button
                 key={item.id}
@@ -64,7 +64,7 @@ export default function SuccessCases() {
           </div>
 
           {/* Right panel - Expanded case roadmap details */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8">
             {(() => {
               const currentCase = SUCCESS_CASES.find(c => c.id === expandedCaseId) || SUCCESS_CASES[0];
               return (
@@ -121,6 +121,90 @@ export default function SuccessCases() {
             })()}
           </div>
 
+        </div>
+
+        {/* Brand New Dedicated Mobile Version (Legible, Touch-Optimized Accordion Card Track) */}
+        <div className="mt-8 block lg:hidden space-y-4">
+          {SUCCESS_CASES.map((item) => {
+            const isCurrent = expandedCaseId === item.id;
+            return (
+              <div 
+                key={`mobile-${item.id}`}
+                className={`rounded-sm border transition-all duration-300 overflow-hidden ${
+                  isCurrent 
+                    ? 'bg-slate-950 border-brand-gold shadow-md' 
+                    : 'bg-slate-900 border-slate-850'
+                }`}
+              >
+                {/* Header button triggers mobile accordion toggle */}
+                <button
+                  onClick={() => setExpandedCaseId(isCurrent ? null : item.id)}
+                  className="w-full text-left p-5 flex flex-col justify-start text-white cursor-pointer active:bg-slate-850"
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <span className="inline-block rounded bg-brand-navy px-2.5 py-0.5 text-xs font-bold text-brand-gold border border-brand-gold/20">
+                      {item.area} 전문
+                    </span>
+                    <ChevronRight className={`h-4 w-4 text-brand-gold transition-transform duration-300 ${
+                      isCurrent ? 'rotate-90' : 'rotate-0'
+                    }`} />
+                  </div>
+                  
+                  <h3 className="font-serif text-base font-bold text-white mt-2 leading-relaxed">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="mt-1.5 text-xs text-brand-gold font-bold">
+                    🛡️ {item.resultBadge}
+                  </p>
+                </button>
+
+                {/* Collapsible Details Body */}
+                {isCurrent && (
+                  <div className="border-t border-slate-850 bg-slate-950 px-5 py-6 space-y-6 animate-fade-in text-sm">
+                    {/* Part 1: 사건 내용 */}
+                    <div className="space-y-1.5">
+                      <div className="flex items-center space-x-2">
+                        <AlertCircle className="h-4 w-4 text-red-400 shrink-0" />
+                        <span className="text-xs font-bold text-red-400 tracking-wider uppercase">1. 사건 내용</span>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed text-xs pl-6 whitespace-pre-wrap">
+                        {item.caseContent}
+                      </p>
+                    </div>
+
+                    {/* Part 2: 변론 내용 */}
+                    <div className="border-t border-slate-880 pt-4 space-y-1.5">
+                      <div className="flex items-center space-x-2">
+                        <Milestone className="h-4 w-4 text-brand-gold shrink-0" />
+                        <span className="text-xs font-bold text-brand-gold tracking-wider uppercase">2. 변론 내용</span>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed text-xs pl-6 whitespace-pre-wrap">
+                        {item.defenseContent}
+                      </p>
+                    </div>
+
+                    {/* Part 3: 판결 / 처분 결과 */}
+                    <div className="border-t border-slate-880 pt-4 space-y-1.5">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0" />
+                        <span className="text-xs font-bold text-green-400 tracking-wider uppercase">3. {item.resultLabel}</span>
+                      </div>
+                      <div className="bg-brand-navy/60 p-3.5 rounded border border-slate-850">
+                        <p className="text-xs font-semibold text-slate-100 leading-relaxed whitespace-pre-wrap">
+                          {item.resultContent}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          <div className="rounded-sm bg-slate-950 p-5 border border-slate-800 text-left text-[11px] text-slate-550 leading-relaxed">
+            <p>※ 의뢰인 신원과 사건 안전을 지키기 위하여 일부 사칭이 유발되지 않도록 구체 명칭은 익명 및 약어화 되었으나, 모든 선례 판례 번호는 부산지방법원 정남 승소 원본 사건에 기초합니다.</p>
+          </div>
         </div>
 
       </div>
