@@ -48,20 +48,20 @@ export default function LawyerCards() {
                 </div>
 
                 {/* Profile Details Column */}
-                <div className="p-6 md:p-8 md:col-span-7 flex flex-col justify-between">
+                <div className="p-5 md:p-8 md:col-span-7 flex flex-col justify-between">
                   <div>
                     {/* Name & Position */}
                     <div>
-                      <span className="text-sm font-bold tracking-wider text-slate-400 uppercase">법무법인 율인 부산분사무소</span>
-                      <h3 className="font-serif text-2xl font-bold text-brand-navy flex items-baseline mt-1">
-                        {lawyer.name} <span className="text-brand-gold">대표변호사</span>
+                      <span className="text-xs md:text-sm font-bold tracking-wider text-slate-400 uppercase">법무법인 율인 부산분사무소</span>
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-navy flex items-baseline mt-1">
+                        {lawyer.name} <span className="text-brand-gold text-lg md:text-xl ml-1">대표변호사</span>
                       </h3>
                     </div>
 
                     {/* Empathetic Quote */}
                     <div className="relative mt-4 border-l-2 border-brand-gold pl-4 py-1">
                       <Quote className="absolute right-2 bottom-1 h-8 w-8 text-slate-100 opacity-60 z-0" />
-                      <p className="relative z-10 font-serif text-base sm:text-lg italic font-semibold leading-relaxed text-slate-800">
+                      <p className="relative z-10 font-serif text-sm sm:text-base md:text-lg italic font-semibold leading-relaxed text-slate-800">
                         "{lawyer.quote}"
                       </p>
                     </div>
@@ -71,7 +71,7 @@ export default function LawyerCards() {
                       {lawyer.specialFields.map((field, fidx) => (
                         <span
                           key={fidx}
-                          className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 border border-slate-200"
+                          className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] md:text-xs font-bold text-slate-700 border border-slate-200"
                         >
                           {field}
                         </span>
@@ -79,15 +79,15 @@ export default function LawyerCards() {
                     </div>
 
                     {/* Detailed Career Milestones */}
-                    <div className="mt-6">
-                      <h4 className="flex items-center text-sm font-bold tracking-wider text-slate-400 uppercase mb-2">
+                    <div className="mt-5 md:mt-6">
+                      <h4 className="flex items-center text-xs md:text-sm font-bold tracking-wider text-slate-400 uppercase mb-2">
                         <GraduationCap className="mr-1.5 h-3.5 w-3.5 text-brand-gold" />
                         <span>대표변호사 주요 약력</span>
                       </h4>
                       
                       <ul className="space-y-1.5">
                         {lawyer.careers.map((career, cidx) => (
-                          <li key={cidx} className="flex items-start text-sm text-slate-700 font-medium leading-normal pl-0.5">
+                          <li key={cidx} className="flex items-start text-xs md:text-sm text-slate-700 font-medium leading-normal pl-0.5">
                             <span className="mr-2 text-brand-gold select-none">•</span>
                             <span>{career}</span>
                           </li>

@@ -63,10 +63,10 @@ export default function TrustSection() {
           <p className="font-serif text-lg md:text-xl font-medium tracking-tight leading-relaxed">
             “현재 본인이 서있는 처지를 정확히 정리하고, 가장 현실적인 승소 가이드라인을 수립해 드립니다.”
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-semibold text-slate-300">
-            <span className="flex items-center"><CheckCircle2 className="mr-1.5 h-4.5 w-4.5 text-brand-gold" /> 1:1 비밀 밀착 보장</span>
-            <span className="flex items-center"><CheckCircle2 className="mr-1.5 h-4.5 w-4.5 text-brand-gold" /> 대한변호사협회 정식 등록 소속인 담당 직접 책임제</span>
-            <span className="flex items-center"><CheckCircle2 className="mr-1.5 h-4.5 w-4.5 text-brand-gold" /> 선임 강요 없는 고품격 기초 분석 상담</span>
+          <div className="mt-8 flex flex-col items-center sm:flex-row sm:justify-center gap-3.5 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-250 max-w-md sm:max-w-none mx-auto">
+            <span className="flex items-center text-left"><CheckCircle2 className="mr-1.5 h-4.5 w-4.5 text-brand-gold shrink-0" /> 1:1 비밀 밀착 보장</span>
+            <span className="flex items-center text-left"><CheckCircle2 className="mr-1.5 h-4.5 w-4.5 text-brand-gold shrink-0" /> 대한변호사협회 등록 소속 직접 책임제</span>
+            <span className="flex items-center text-left"><CheckCircle2 className="mr-1.5 h-4.5 w-4.5 text-brand-gold shrink-0" /> 선임 강요 없는 프리미엄 분석 상담</span>
           </div>
         </div>
 

@@ -11,11 +11,11 @@ export default function SuccessCases() {
         
         {/* Header */}
         <div className="text-center">
-          <span className="text-sm font-bold tracking-widest text-brand-gold uppercase">REAL ADVOCATE TRACK RECORD</span>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl mt-3">
+          <span className="text-xs md:text-sm font-bold tracking-widest text-brand-gold uppercase">REAL ADVOCATE TRACK RECORD</span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white lg:text-4xl mt-3">
             결과로 입증하는 율인의 해결 사례
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-400 sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed text-slate-400">
             과장된 광고나 수사가 아닌, 사건 개시 후 종결까지 율인이 발로 뛰며 실질적인 입증을 끌어낸 과정 중심의 실전 성공사례입니다.
           </p>
           <div className="mx-auto mt-5 h-[2px] w-12 bg-brand-gold" />
@@ -73,12 +73,12 @@ export default function SuccessCases() {
                   {/* Category Title */}
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-850 pb-5">
                     <div>
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">CASE HISTORY SPECIFICATION</span>
-                      <h4 className="font-serif text-xl font-bold text-white mt-1">
+                      <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">CASE HISTORY SPECIFICATION</span>
+                      <h4 className="font-serif text-lg sm:text-xl font-bold text-white mt-1">
                         {currentCase.area}분야 | {currentCase.title}
                       </h4>
                     </div>
-                    <span className="inline-flex items-center rounded-sm bg-brand-gold/10 px-3 py-1 text-xs sm:text-sm font-bold text-brand-gold uppercase tracking-wider border border-brand-gold/30">
+                    <span className="inline-flex items-center rounded-sm bg-brand-gold/10 px-2.5 py-0.5 text-xs sm:text-sm font-bold text-brand-gold uppercase tracking-wider border border-brand-gold/30">
                       {currentCase.resultBadge.split(' (')[0]}
                     </span>
                   </div>
@@ -86,10 +86,10 @@ export default function SuccessCases() {
                   {/* Client Situation - Anxiety Point */}
                   <div className="mt-6">
                     <div className="flex items-center space-x-2">
-                      <AlertCircle className="h-4.5 w-4.5 text-red-400 shrink-0" />
-                      <span className="text-sm font-bold text-red-400 tracking-wider">상담 전 의뢰인의 불안한 정황</span>
+                      <AlertCircle className="h-4 w-4 text-red-400 shrink-0" />
+                      <span className="text-xs md:text-sm font-bold text-red-400 tracking-wider">상담 전 의뢰인의 불안한 정황</span>
                     </div>
-                    <p className="mt-2 pl-6 text-sm text-slate-300 leading-relaxed">
+                    <p className="mt-2 pl-6 text-xs md:text-sm text-slate-300 leading-relaxed">
                       {currentCase.clientSituation}
                     </p>
                   </div>
@@ -97,8 +97,8 @@ export default function SuccessCases() {
                   {/* Chronological Process Roadmap */}
                   <div className="mt-8">
                     <div className="flex items-center space-x-2 mb-4">
-                      <Milestone className="h-4.5 w-4.5 text-brand-gold" />
-                      <span className="text-sm font-bold text-brand-gold tracking-wider">율인의 시간대별 법리 조치 과정</span>
+                      <Milestone className="h-4 w-4 text-brand-gold" />
+                      <span className="text-xs md:text-sm font-bold text-brand-gold tracking-wider">율인의 시간대별 법리 조치 과정</span>
                     </div>
 
                     <div className="relative border-l border-slate-800 pl-6 ml-2 space-y-5">
@@ -109,7 +109,7 @@ export default function SuccessCases() {
                             <span className="text-[9px] text-brand-gold font-black">{idx + 1}</span>
                           </div>
                           
-                          <p className="text-sm text-slate-300 font-medium leading-relaxed">
+                          <p className="text-xs md:text-sm text-slate-300 font-medium leading-relaxed">
                             {step}
                           </p>
                         </div>
@@ -120,17 +120,17 @@ export default function SuccessCases() {
                   {/* Outcome */}
                   <div className="mt-8 border-t border-slate-850 pt-6">
                     <div className="flex items-center space-x-2">
-                      <CheckCircle2 className="h-4.5 w-4.5 text-green-400" />
-                      <span className="text-sm font-bold text-green-400 tracking-wider">법원의 선고 결과 및 일상 회복</span>
+                      <CheckCircle2 className="h-4 w-4 text-green-400" />
+                      <span className="text-xs md:text-sm font-bold text-green-400 tracking-wider">법원의 선고 결과 및 일상 회복</span>
                     </div>
-                    <p className="mt-2 text-sm sm:text-base font-serif font-black text-slate-100 leading-relaxed bg-brand-navy/60 p-4 rounded border border-slate-800">
+                    <p className="mt-2 text-xs sm:text-sm md:text-base font-serif font-black text-slate-100 leading-relaxed bg-brand-navy/60 p-4 rounded border border-slate-800">
                       {currentCase.finalResult}
                     </p>
                   </div>
 
                   {/* Ultimate Point */}
                   <div className="mt-4 bg-slate-900 border border-slate-800/80 rounded p-4">
-                    <span className="text-xs font-bold text-brand-gold uppercase tracking-widest font-mono">CORE SOLUTION SUCCESS KEY</span>
+                    <span className="text-[10px] md:text-xs font-bold text-brand-gold uppercase tracking-widest font-mono">CORE SOLUTION SUCCESS KEY</span>
                     <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
                       {currentCase.keyFocusPoint}
                     </p>

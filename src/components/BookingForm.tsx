@@ -179,12 +179,12 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                 </div>
 
                 <div>
-                  <label className="flex items-center text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-xs sm:text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <Clock className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>2. 원하는 시간 선택 (실시간)</span>
                   </label>
                   
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {RESERVATION_TIMES.map((time) => {
                       const isBooked = bookedTimesOnSelectedDate.includes(time);
                       return (
@@ -193,28 +193,28 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                           type="button"
                           disabled={isBooked}
                           onClick={() => setSelectedTime(time)}
-                          className={`rounded-sm py-2.5 text-center text-sm font-bold border transition-all duration-150 cursor-pointer ${
+                          className={`rounded-sm py-2 text-center text-xs sm:text-sm font-bold border transition-all duration-150 cursor-pointer ${
                             isBooked
                               ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed line-through'
                               : selectedTime === time
-                              ? 'bg-brand-navy border-brand-navy text-white font-black scale-105'
+                              ? 'bg-brand-navy border-brand-navy text-white font-black scale-102'
                               : 'bg-white border-slate-200 text-slate-700 hover:border-brand-gold hover:bg-slate-50'
                           }`}
                         >
                           {time}
                           {isBooked ? (
-                            <span className="block text-[10px] text-slate-400 font-bold">예약 마감</span>
+                            <span className="block text-[9px] sm:text-[10px] text-slate-400 font-bold">예약 마감</span>
                           ) : (
-                            <span className="block text-[10px] text-brand-gold font-bold">신청가능</span>
+                            <span className="block text-[9px] sm:text-[10px] text-brand-gold font-bold">신청가능</span>
                           )}
                         </button>
                       );
                     })}
                   </div>
-                  <div className="flex items-center justify-between mt-3 text-xs text-slate-500 font-bold">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 text-[10px] sm:text-xs text-slate-500 font-bold gap-1.5">
                     <span>(정기 휴게점심시간: 12시 - 13시)</span>
                     <span className="flex items-center text-brand-gold font-semibold">
-                      <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-brand-gold"></span>
+                      <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-brand-gold animate-pulse"></span>
                       실시간 비활성화 연동중
                     </span>
                   </div>
