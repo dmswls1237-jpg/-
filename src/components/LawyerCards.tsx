@@ -31,12 +31,12 @@ export default function LawyerCards() {
             >
               <div className="grid grid-cols-1 md:grid-cols-12">
                 
-                {/* Photo Column - Responsive ratio & alignment to prevent cropping of the lawyer's head/face on mobile */}
-                <div className="relative w-full aspect-[4/5] sm:aspect-square md:aspect-auto md:h-auto md:col-span-5 bg-slate-100 overflow-hidden">
+                {/* Photo Column - Tall, elegant vertical frame with top-aligned positioning to ensure head and face are never cropped */}
+                <div className="relative w-full h-[400px] sm:h-[480px] md:h-auto md:col-span-5 bg-slate-100 overflow-hidden">
                   <img
                     src={lawyer.avatarUrl}
                     alt={`${lawyer.name} 대표변호사`}
-                    className="h-full w-full object-cover object-[center_12%] md:object-center hover:scale-102 transition-transform duration-350"
+                    className="h-full w-full object-cover object-top hover:scale-102 transition-transform duration-350"
                     referrerPolicy="no-referrer"
                   />
                   {/* Gold Overlay Corner Badge */}
