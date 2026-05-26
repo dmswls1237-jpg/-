@@ -28,10 +28,10 @@ export interface SuccessCase {
   area: string; // e.g. '형사', '가사', '회생'
   title: string;
   resultBadge: string;
-  clientSituation: string; // 의뢰인의 불안한 상황
-  processSteps: string[]; // 사건 진행 흐름
-  finalResult: string; // 성공 결과
-  keyFocusPoint: string; // 핵심 해결 포인트
+  caseContent: string; // 1. 사건 내용
+  defenseContent: string; // 2. 변론 내용
+  resultContent: string; // 3. 판결/처분 결과
+  resultLabel: string; // '판결 결과' | '처분 결과'
 }
 
 export interface Lawyer {

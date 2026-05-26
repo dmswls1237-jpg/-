@@ -99,7 +99,7 @@ export default function PracticeAreas({ setCurrentTab, setBookingSelectedArea }:
                   {activeData.subfields.map((sub, sidx) => (
                     <div key={sidx} className="flex items-start space-x-2.5">
                       <CheckCircle className="h-5 w-5 text-brand-gold shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-800 font-bold">{sub}</span>
+                      <span className="text-sm sm:text-base text-slate-800 font-bold">{sub}</span>
                     </div>
                   ))}
                 </div>
@@ -111,11 +111,11 @@ export default function PracticeAreas({ setCurrentTab, setBookingSelectedArea }:
               <div className="rounded-sm bg-white p-6 border border-slate-100 shadow-inner">
                 <span className="inline-block rounded bg-red-50 px-2 py-0.5 text-xs font-bold text-red-700 mb-3">율인의 대응 전략</span>
                 <h4 className="font-serif text-lg font-bold text-brand-navy">객관적 승소 방향 수립</h4>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600 md:text-base">
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-600">
                   {activeData.strategy}
                 </p>
                 
-                <div className="mt-4 rounded bg-brand-navy/[0.02] border border-brand-navy/[0.06] p-4 text-xs sm:text-sm text-slate-600">
+                <div className="mt-4 rounded bg-brand-navy/[0.02] border border-brand-navy/[0.06] p-4 text-sm text-slate-600">
                   <p className="font-bold text-slate-800">💡 의뢰인 지참 사항 안내</p>
                   <p className="mt-1 leading-relaxed">상담 시 관련 계약서, 통장 거래역사서, 통화 녹취, 문자 내역을 지참해 주시면 즉각적인 소론 구성이 가능합니다.</p>
                 </div>

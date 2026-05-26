@@ -9,16 +9,14 @@ export default function LawyerCards() {
         
         {/* Section Intro with human listening copy */}
         <div className="text-center">
-          <span className="text-xs font-bold tracking-widest text-slate-500 uppercase">OUR ADVOCACY PHILOSOPHY</span>
+          <span className="text-sm font-bold tracking-widest text-slate-500 uppercase">OUR ADVOCACY PHILOSOPHY</span>
           <h2 className="font-serif text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl mt-3">
             의뢰인의 이야기를 끝까지 듣겠습니다
           </h2>
           <div className="mx-auto mt-4 h-[2px] w-12 bg-brand-gold" />
           
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            사건은 건별로 제각각 얽힌 삶의 사연이 달라 단순 서류 쪼가리로만 해결되지 않습니다.<br />
-            법무법인 율인은 의뢰인의 현재 막힌 처지뿐만 아니라, 소송 이후의 일상 복귀와<br className="hidden md:block" />
-            평온한 여생까지 복리적으로 조망하여 가장 안정적인 해결책을 전담 주재합니다.
+          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-600 font-semibold">
+            법무법인 율인은 사건 해결을 넘어, 의뢰인의 일상 회복과 이후의 삶까지 함께 고려합니다.
           </p>
         </div>
 
@@ -41,7 +39,7 @@ export default function LawyerCards() {
                   />
                   {/* Gold Overlay Corner Badge */}
                   <div className="absolute top-0 left-0 bg-brand-navy px-3.5 py-1.5 border-b border-r border-brand-gold/40 text-center">
-                    <span className="text-xs uppercase font-extrabold tracking-widest text-brand-gold">
+                    <span className="text-sm uppercase font-extrabold tracking-widest text-brand-gold">
                       REPRESENTATIVE ATTORNEY
                     </span>
                   </div>
@@ -52,7 +50,7 @@ export default function LawyerCards() {
                   <div>
                     {/* Name & Position */}
                     <div>
-                      <span className="text-xs md:text-sm font-bold tracking-wider text-slate-400 uppercase">법무법인 율인 부산분사무소</span>
+                      <span className="text-sm md:text-base font-bold tracking-wider text-slate-400 uppercase">법무법인 율인 부산분사무소</span>
                       <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-navy flex items-baseline mt-1">
                         {lawyer.name} <span className="text-brand-gold text-lg md:text-xl ml-1">대표변호사</span>
                       </h3>
@@ -71,7 +69,7 @@ export default function LawyerCards() {
                       {lawyer.specialFields.map((field, fidx) => (
                         <span
                           key={fidx}
-                          className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] md:text-xs font-bold text-slate-700 border border-slate-200"
+                          className="rounded-full bg-slate-100 px-2.5 py-1 text-xs md:text-sm font-bold text-slate-700 border border-slate-200"
                         >
                           {field}
                         </span>
@@ -80,14 +78,14 @@ export default function LawyerCards() {
 
                     {/* Detailed Career Milestones */}
                     <div className="mt-5 md:mt-6">
-                      <h4 className="flex items-center text-xs md:text-sm font-bold tracking-wider text-slate-400 uppercase mb-2">
+                      <h4 className="flex items-center text-sm md:text-base font-bold tracking-wider text-slate-400 uppercase mb-2">
                         <GraduationCap className="mr-1.5 h-3.5 w-3.5 text-brand-gold" />
                         <span>대표변호사 주요 약력</span>
                       </h4>
                       
                       <ul className="space-y-1.5">
                         {lawyer.careers.map((career, cidx) => (
-                          <li key={cidx} className="flex items-start text-xs md:text-sm text-slate-700 font-medium leading-normal pl-0.5">
+                          <li key={cidx} className="flex items-start text-sm text-slate-700 font-medium leading-normal pl-0.5">
                             <span className="mr-2 text-brand-gold select-none">•</span>
                             <span>{career}</span>
                           </li>
@@ -97,7 +95,7 @@ export default function LawyerCards() {
                   </div>
 
                   {/* Philosophy Footer note */}
-                  <div className="mt-6 border-t border-slate-100 pt-4 text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold">
+                  <div className="mt-6 border-t border-slate-100 pt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-semibold">
                     🙋‍♂️ <span className="font-bold text-brand-navy">변호사 직접 상담:</span> 율인 부산분사무소는 사무장이 임의로 사건을 검토하지 않고, 대한변호사협회 등록 전문 변호사인 손혁준 대표변호사가 모든 심층 법리 분석 및 소송 과정을 의뢰인과 일대일로 진행합니다.
                   </div>
 

@@ -79,6 +79,9 @@ export default function App() {
             {/* [섹션2] Anxiety Relief block */}
             <TrustSection />
 
+            {/* [섹션6] Representative Lawyer Intro */}
+            <LawyerCards />
+
             {/* [섹션3] Functional Practice Areas */}
             <PracticeAreas 
               setCurrentTab={setCurrentTab} 
@@ -87,9 +90,6 @@ export default function App() {
 
             {/* [섹션5] Solutions Tracks */}
             <SuccessCases />
-
-            {/* [섹션6] Representative Lawyer Intro */}
-            <LawyerCards />
 
             {/* [섹션10] Location directions and Operating hours */}
             <Directions />
@@ -110,8 +110,7 @@ export default function App() {
                 </h2>
                 
                 <p className="mx-auto mt-4 max-w-lg text-xs text-slate-400 sm:text-sm leading-relaxed">
-                  인터넷에 겉도는 보편적 정보에만 의지해 혼자 속앓이하기보다,<br className="hidden sm:block" />
-                  본인이 처한 독자적 정황을 적어주시면 가장 냉철하고 따뜻한 갈등 해결의 실마리를 제시해 드리겠습니다.
+                  가장 냉철하고 따뜻한 갈등 해결의 실마리를 제시해드립니다.
                 </p>
 
                 <div className="mt-8 flex flex-col justify-center sm:flex-row gap-3">

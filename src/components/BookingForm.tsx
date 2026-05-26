@@ -160,7 +160,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
               {/* Left Segment: Time slots & Date */}
               <div className="space-y-6">
                 <div>
-                  <label className="flex items-center text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-sm sm:text-base font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <Calendar className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>1. 희망 방문 상담일 선택</span>
                   </label>
@@ -175,11 +175,11 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                     className="w-full rounded border border-slate-300 p-3 text-sm focus:border-brand-gold focus:outline-none"
                     required
                   />
-                  <p className="text-xs text-slate-500 mt-1.5 font-semibold">※ 당일 방문상담은 오전 접수건에 한합니다. 토요일 상담 필요시 별도 표기.</p>
+                  <p className="text-sm text-slate-500 mt-1.5 font-semibold">※ 당일 방문상담은 오전 접수건에 한합니다. 토요일 상담 필요시 별도 표기.</p>
                 </div>
 
                 <div>
-                  <label className="flex items-center text-xs sm:text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-sm sm:text-base font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <Clock className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>2. 원하는 시간 선택 (실시간)</span>
                   </label>
@@ -193,7 +193,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                           type="button"
                           disabled={isBooked}
                           onClick={() => setSelectedTime(time)}
-                          className={`rounded-sm py-2 text-center text-xs sm:text-sm font-bold border transition-all duration-150 cursor-pointer ${
+                          className={`rounded-sm py-2 text-center text-sm font-extrabold border transition-all duration-150 cursor-pointer ${
                             isBooked
                               ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed line-through'
                               : selectedTime === time
@@ -203,15 +203,15 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                         >
                           {time}
                           {isBooked ? (
-                            <span className="block text-[9px] sm:text-[10px] text-slate-400 font-bold">예약 마감</span>
+                            <span className="block text-xs text-slate-400 font-bold">예약 마감</span>
                           ) : (
-                            <span className="block text-[9px] sm:text-[10px] text-brand-gold font-bold">신청가능</span>
+                            <span className="block text-xs text-brand-gold font-bold">신청가능</span>
                           )}
                         </button>
                       );
                     })}
                   </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 text-[10px] sm:text-xs text-slate-500 font-bold gap-1.5">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 text-xs text-slate-500 font-bold gap-1.5">
                     <span>(정기 휴게점심시간: 12시 - 13시)</span>
                     <span className="flex items-center text-brand-gold font-semibold">
                       <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-brand-gold animate-pulse"></span>
@@ -221,7 +221,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                 </div>
 
                 <div>
-                  <label className="flex items-center text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-sm sm:text-base font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <ListTodo className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>3. 법률 소송 희망 분야</span>
                   </label>
@@ -241,7 +241,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
               {/* Right Segment: Contact Details & Details */}
               <div className="space-y-6">
                 <div>
-                  <label className="flex items-center text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-sm sm:text-base font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <User className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>4. 의뢰인 성명</span>
                   </label>
@@ -257,7 +257,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                 </div>
 
                 <div>
-                  <label className="flex items-center text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-sm sm:text-base font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <Phone className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>5. 연락처 (승인 문자 수신용)</span>
                   </label>
@@ -270,11 +270,11 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                     className="w-full rounded border border-slate-300 p-3 text-sm focus:border-brand-gold focus:outline-none"
                     required
                   />
-                  <p className="text-xs text-red-500 mt-1 font-bold">※ 허위 연락처 작성 시 예약이 자동으로 무효 취소 조치됩니다.</p>
+                  <p className="text-sm text-red-600 mt-1 font-bold">※ 허위 연락처 작성 시 예약이 자동으로 무효 취소 조치됩니다.</p>
                 </div>
 
                 <div>
-                  <label className="flex items-center text-sm font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  <label className="flex items-center text-sm sm:text-base font-bold tracking-wider text-slate-700 uppercase mb-2">
                     <FileText className="mr-1.5 h-4.5 w-4.5 text-brand-gold" />
                     <span>6. 간단한 사건 사실관계 설명</span>
                   </label>
@@ -304,7 +304,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
                       className="h-4.5 w-4.5 rounded border-slate-300 text-brand-navy focus:ring-brand-gold cursor-pointer"
                     />
                   </div>
-                  <div className="ml-3 text-sm leading-relaxed text-slate-600">
+                  <div className="ml-3 text-sm sm:text-base leading-relaxed text-slate-600">
                     <label htmlFor="privacy" className="font-extrabold text-slate-800 cursor-pointer">
                       개인정보 수집 및 상담 활용동의서 (필수)
                     </label>
@@ -318,7 +318,7 @@ export default function BookingForm({ reservations, addReservation, selectedArea
             <div className="mt-8 flex justify-center">
               <button
                 type="submit"
-                className="w-full sm:w-1/2 rounded-sm bg-brand-navy py-4.5 text-center text-sm font-extrabold tracking-wide text-white transition duration-200 hover:bg-slate-800 shadow-md cursor-pointer active:scale-95"
+                className="w-full sm:w-1/2 rounded-sm bg-brand-navy py-4.5 text-center text-base font-extrabold tracking-wide text-white transition duration-200 hover:bg-slate-800 shadow-md cursor-pointer active:scale-95"
               >
                 예약 신청서 제출 및 법률 심의 연동
               </button>
