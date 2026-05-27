@@ -71,6 +71,20 @@ export default function BookingForm({ reservations, addReservation, selectedArea
     };
 
     addReservation(newBooking);
+
+    // Call server-side real-time notification endpoint to trigger email and/or SMS alerts
+    fetch('/api/notify-reservation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newBooking)
+    })
+    .then(r => r.json())
+    .then(resData => {
+      console.log('Real-time notification triggered successfully:', resData);
+    })
+    .catch(err => {
+      console.error('Failed to dispatch notification to server API:', err);
+    });
     
     // Save state for final congrats page
     setBookingSummary({
@@ -139,10 +153,19 @@ export default function BookingForm({ reservations, addReservation, selectedArea
               </table>
             </div>
 
-            <div className="mt-8 max-w-lg mx-auto bg-brand-navy/5 p-4 rounded text-sm text-slate-700 text-left space-y-1.5 border border-slate-200">
-              <p className="font-bold text-slate-800">💡 법인 접수처 심층 대응 조치사항 안내</p>
-              <p>• 율인의 담당 지정 변호사가 영업일 기준 3시간 이내에 전송하신 내용을 심사하여 일대일 면담 대동 서면 요강과 사전 보조용 서류가 필요할 시 기재하신 연락처로 보이스 상담 전화를 발송하겠습니다.</p>
-              <p>• 긴급 대동 주치의를 소싱하시길 바란다면 <span className="font-semibold text-brand-navy font-bold">051-711-4509</span> 대표전화로 유선 예약도 별도로 하실 수 있습니다.</p>
+            <div className="mt-8 max-w-lg mx-auto bg-brand-navy/5 p-4 rounded text-sm text-slate-705 text-left space-y-2.5 border border-slate-200">
+              <p className="font-extrabold text-brand-navy flex items-center gap-1">
+                <span>💡 법인 접수처 심층 대응 조치사항 안내</span>
+              </p>
+              <p className="leading-relaxed text-xs">• 율인의 담당 지정 변호사가 영업일 기준 3시간 이내에 전송하신 내용을 심사하여 일대일 면담 대동 서면 요강과 사전 보조용 서류가 필요할 시 기재하신 연락처로 보이스 상담 전화를 발송하겠습니다.</p>
+              <p className="leading-relaxed text-xs">• 긴급 대동 주치의를 소싱하시길 바란다면 <span className="font-semibold text-brand-navy font-bold">051-711-4509</span> 대표전화로 유선 예약도 별도로 하실 수 있습니다.</p>
+              
+              <div className="mt-2 pt-2.5 border-t border-slate-200 text-xs text-amber-800 bg-amber-50/50 p-2.5 rounded border border-amber-200/60">
+                <p className="font-extrabold text-[12px] text-amber-900">⚠️ 실제 휴대폰 문자(SMS) 및 이메일 전송 안내</p>
+                <p className="mt-1 leading-relaxed text-[11px] text-slate-600">
+                  현재 알람 제어장치가 <strong>시뮬레이션 가상 모드</strong>로 자동 동작하고 있습니다. 실제 사용자 이메일 계정 및 휴대폰 번호로 전화를 연동하여 알람을 수령하려면, AI Studio 메인 우측 상단의 <strong>[Settings]</strong> 메뉴에 네이버/구글 메일 SMTP 비밀번호 및 Twilio 계정 토큰을 환경 변수(<code className="bg-slate-100 px-1 py-0.5 rounded font-mono font-bold text-slate-800">SMTP_USER</code>, <code className="bg-slate-100 px-1 py-0.5 rounded font-mono font-bold text-slate-800">SMTP_PASS</code>, <code className="bg-slate-100 px-1 py-0.5 rounded font-mono font-bold text-slate-800">TWILIO_ACCOUNT_SID</code> 등)로 채워주시면 실물 연동이 완료되어 즉시 도달하게 됩니다! (관리자 제어센터에서 실시간 전송 대장을 확인할 수 있습니다)
+                </p>
+              </div>
             </div>
 
             <button

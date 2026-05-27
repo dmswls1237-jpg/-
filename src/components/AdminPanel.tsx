@@ -3,7 +3,8 @@ import { Reservation, ReservationStatus } from '../types';
 import { RESERVATION_TIMES } from '../data';
 import { 
   Building2, Search, Edit3, Trash2, Calendar, Clock, ListFilter,
-  CheckCircle, ArrowLeft, Eye, MessageSquare, BadgeAlert, AlertCircle, FileSpreadsheet
+  CheckCircle, ArrowLeft, Eye, MessageSquare, BadgeAlert, AlertCircle, FileSpreadsheet,
+  Bell, Send, Mail
 } from 'lucide-react';
 
 interface AdminPanelProps {
@@ -14,6 +15,49 @@ interface AdminPanelProps {
 
 export default function AdminPanel({ reservations, updateReservation, deleteReservation }: AdminPanelProps) {
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [notificationLogs, setNotificationLogs] = useState<any[]>([]);
+  const [smtpConfigured, setSmtpConfigured] = useState<boolean>(false);
+  const [smsConfigured, setSmsConfigured] = useState<boolean>(false);
+  const [isNotificationsLoading, setIsNotificationsLoading] = useState<boolean>(false);
+  const [isSendingTest, setIsSendingTest] = useState<boolean>(false);
+  const [showNotificationHelp, setShowNotificationHelp] = useState<boolean>(false);
+
+  const fetchNotificationLogs = () => {
+    setIsNotificationsLoading(true);
+    fetch('/api/notifications')
+      .then(res => res.json())
+      .then(data => {
+        setNotificationLogs(data.logs || []);
+        setSmtpConfigured(data.smtpConfigured);
+        setSmsConfigured(data.smsConfigured);
+      })
+      .catch(err => {
+        console.error('Failed to fetch notification status:', err);
+      })
+      .finally(() => {
+        setIsNotificationsLoading(false);
+      });
+  };
+
+  React.useEffect(() => {
+    fetchNotificationLogs();
+  }, []);
+
+  const handleSendTestNotification = () => {
+    setIsSendingTest(true);
+    fetch('/api/test-notification', { method: 'POST' })
+      .then(res => res.json())
+      .then(data => {
+        alert('테스트 알람 발송이 실행되었습니다! 로그 기록을 확인해 주십시오.');
+        fetchNotificationLogs();
+      })
+      .catch(err => {
+        alert('테스트 알림 발송 중 오류 발생: ' + err.message);
+      })
+      .finally(() => {
+        setIsSendingTest(false);
+      });
+  };
   const [filterArea, setFilterArea] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   
@@ -514,6 +558,178 @@ export default function AdminPanel({ reservations, updateReservation, deleteRese
             )}
           </div>
 
+        </div>
+
+        {/* Real-time Notification System Dashboard Control Panel */}
+        <div className="mt-12 rounded border border-slate-800 bg-slate-950 p-6 shadow-2xl">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-800 pb-4 mb-6 gap-4">
+            <div>
+              <span className="text-[10px] text-brand-gold font-bold uppercase tracking-widest bg-brand-navy p-1 px-2 mb-1.5 inline-block rounded border border-brand-gold/20">
+                REAL-TIME DISPATCH ENGINE
+              </span>
+              <h3 className="font-serif text-xl font-bold text-white flex items-center gap-2">
+                <Bell className="h-5 w-5 text-brand-gold animate-bounce" />
+                <span>율인 실시간 상담예약 알람 제어센터</span>
+              </h3>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={fetchNotificationLogs}
+                disabled={isNotificationsLoading}
+                className="rounded bg-slate-900 border border-slate-800 hover:border-slate-700 px-3 py-2 text-xs font-bold text-slate-300 transition cursor-pointer active:scale-95"
+              >
+                {isNotificationsLoading ? '조회 중...' : '동기화/새로고침'}
+              </button>
+              <button
+                type="button"
+                onClick={handleSendTestNotification}
+                disabled={isSendingTest}
+                className="rounded bg-brand-gold hover:bg-brand-gold-light px-4 py-2 text-xs font-extrabold text-brand-navy transition cursor-pointer active:scale-95 flex items-center gap-1.5"
+              >
+                <Send className="h-3.5 w-3.5 animate-pulse" />
+                <span>{isSendingTest ? '테스트 실행중...' : '테스트 알람 발송'}</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            {/* Status indicators */}
+            <div className="lg:col-span-1 space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">알림 연동 상태 및 환경정보</h4>
+              
+              <div className="rounded bg-slate-900/60 border border-slate-850 p-4 space-y-3">
+                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
+                  <span className="text-xs text-slate-400">SMTP 메일 알람 연동</span>
+                  <div className="flex items-center gap-1.5">
+                    {smtpConfigured ? (
+                      <>
+                        <span className="h-2 w-2 rounded-full bg-green-500" />
+                        <span className="text-xs font-bold text-green-400">연동 활성화</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="h-2 w-2 rounded-full bg-slate-600" />
+                        <span className="text-xs font-bold text-slate-400">시뮬레이션 모드</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-400">Twilio SMS 문자 연동</span>
+                  <div className="flex items-center gap-1.5">
+                    {smsConfigured ? (
+                      <>
+                        <span className="h-2 w-2 rounded-full bg-green-500" />
+                        <span className="text-xs font-bold text-green-400">연동 활성화</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="h-2 w-2 rounded-full bg-slate-600" />
+                        <span className="text-xs font-bold text-slate-400">시뮬레이션 모드</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-brand-navy/30 p-4 rounded border border-slate-800 text-xs text-slate-300 space-y-2">
+                <p className="font-extrabold text-brand-gold flex items-center gap-1">
+                  <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                  <span>실시간 알람 작동 매뉴얼</span>
+                </p>
+                <p className="leading-relaxed text-[11px]">
+                  의뢰인이 홈페이지 예약 신청을 완료하면 즉시 지정된 이메일 계정 및 기재한 연락처로 알람이 도달합니다.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setShowNotificationHelp(!showNotificationHelp)}
+                  className="text-[11px] text-brand-gold hover:underline font-bold text-left block"
+                >
+                  {showNotificationHelp ? '설정 가이드 닫기 ▲' : '서버 Secrets 환경변수 세팅 가이드 보기 ▼'}
+                </button>
+              </div>
+
+              {showNotificationHelp && (
+                <div className="bg-slate-900 border border-slate-800 p-4 rounded text-[11px] text-slate-400 space-y-2 animate-fade-in font-mono">
+                  <p className="font-bold text-slate-200">※ .env.example / Secrets 구성 항목</p>
+                  <div className="space-y-1">
+                    <p><span className="text-brand-gold">SMTP_HOST</span>: "smtp.naver.com" (네이버/구글 등)</p>
+                    <p><span className="text-brand-gold">SMTP_PORT</span>: 587 (혹은 465)</p>
+                    <p><span className="text-brand-gold">SMTP_USER</span>: "본인계정@naver.com"</p>
+                    <p><span className="text-brand-gold">SMTP_PASS</span>: "네이버 애플리케이션 비밀번호"</p>
+                    <p><span className="text-brand-gold">NOTIFICATION_RECEIVER_EMAIL</span>: 수신용 법무 메일</p>
+                  </div>
+                  <div className="border-t border-slate-800 pt-2 space-y-1">
+                    <p><span className="text-brand-gold">TWILIO_ACCOUNT_SID</span>: Twilio SID</p>
+                    <p><span className="text-brand-gold">TWILIO_AUTH_TOKEN</span>: Twilio 토큰</p>
+                    <p><span className="text-brand-gold">TWILIO_PHONE_NUMBER</span>: 발신 가상 번호</p>
+                    <p><span className="text-brand-gold">NOTIFICATION_RECEIVER_PHONE</span>: 비서 수신 연락처</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Notification logs history */}
+            <div className="lg:col-span-2 flex flex-col h-[300px] overflow-hidden justify-between border border-slate-850 rounded bg-slate-900/40 p-4">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
+                  <span className="text-xs font-bold text-slate-300">최근 실시간 알람 전송 기록 (최대 100건 보관)</span>
+                  <span className="text-[10px] text-slate-500">누적 로그: {notificationLogs.length}건</span>
+                </div>
+
+                <div className="overflow-y-auto flex-1 space-y-2 pr-1 scrollbar-thin">
+                  {notificationLogs.length === 0 ? (
+                    <div className="text-center py-16 text-slate-600 text-[11px]">
+                      연동 이후 수신되거나 테스트 전송된 알람 내역이 존재하지 않습니다.<br />
+                      우측 상단 '테스트 알람 발송' 또는 예약폼에서 테스트해보세요!
+                    </div>
+                  ) : (
+                    notificationLogs.map((log: any) => (
+                      <div 
+                        key={log.id} 
+                        className="p-3 rounded bg-slate-950 border border-slate-850 flex items-start justify-between text-[11px] leading-relaxed gap-2"
+                      >
+                        <div className="space-y-1 w-full">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${
+                              log.type === 'email' ? 'bg-indigo-950 text-indigo-300 border border-indigo-900' : 'bg-emerald-950 text-emerald-300 border border-emerald-900'
+                            }`}>
+                              {log.type === 'email' ? '📧 이메일' : '💬 문자메시지'}
+                            </span>
+                            
+                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-extrabold ${
+                              log.status === 'sent' 
+                                ? 'bg-green-950 text-green-300 border border-green-800' 
+                                : log.status === 'simulated'
+                                ? 'bg-slate-900 text-slate-400 border border-slate-800'
+                                : 'bg-red-950 text-red-300 border border-red-800'
+                            }`}>
+                              {log.status === 'sent' ? '실제발송' : log.status === 'simulated' ? '시뮬레이션완료' : '발송실패'}
+                            </span>
+
+                            <span className="text-slate-500 text-[10px] font-mono">
+                              {new Date(log.timestamp).toLocaleTimeString('ko-KR')}
+                            </span>
+                          </div>
+                          
+                          <p className="text-slate-300 font-bold">수신 대상자: {log.recipient}</p>
+                          <p className="text-slate-400 whitespace-pre-wrap line-clamp-2 mt-1">{log.body}</p>
+                          {log.error && (
+                            <p className="text-red-400 font-mono text-[9px] mt-0.5">에러 로그: {log.error}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
